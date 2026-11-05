@@ -1,0 +1,91 @@
+# Démarrer le site web Airport (Windows 11)
+
+Ce guide explique comment lancer le projet Airport avec PostgreSQL, Spring Boot et Angular.
+
+## 1. Vérifier PostgreSQL
+
+Ouvrir PowerShell et exécuter :
+
+```powershell
+Get-Service *postgres*
+```
+
+Si le service est déjà `Running`, ne rien faire.
+
+S'il est arrêté, utiliser son nom exact affiché par la commande précédente, par exemple :
+
+```powershell
+Start-Service -Name "postgresql-x64-XX"
+```
+
+Remplacer `postgresql-x64-XX` par le vrai nom du service. Il peut être nécessaire d'ouvrir PowerShell en administrateur.
+
+## 2. Démarrer le backend Spring Boot
+
+Ouvrir un premier terminal PowerShell et exécuter :
+
+```powershell
+cd "$HOME\Desktop\airport\backend"
+```
+
+Si le projet contient `mvnw.cmd`, lancer :
+
+```powershell
+.\mvnw.cmd spring-boot:run
+```
+
+Sinon, si Maven est installé :
+
+```powershell
+mvn spring-boot:run
+```
+
+Laisser ce terminal ouvert et attendre le démarrage complet de Spring Boot.
+
+## 3. Démarrer le frontend Angular
+
+Ouvrir un deuxième terminal PowerShell et exécuter :
+
+```powershell
+cd "$HOME\Desktop\airport\frontend"
+ng serve
+```
+
+Laisser ce terminal ouvert et attendre la fin de la compilation.
+
+## 4. Ouvrir le site
+
+Dans le navigateur, ouvrir :
+
+http://localhost:4200
+
+Vérifier que le dashboard s'affiche et que l'indicateur de connexion à l'API est vert.
+
+## Résumé rapide
+
+- **PostgreSQL** : doit fonctionner.
+- **Terminal 1 — Backend** :
+  ```powershell
+  cd "$HOME\Desktop\airport\backend"
+  .\mvnw.cmd spring-boot:run
+  ```
+  Si `mvnw.cmd` n'existe pas, utiliser `mvn spring-boot:run`.
+- **Terminal 2 — Frontend** :
+  ```powershell
+  cd "$HOME\Desktop\airport\frontend"
+  ng serve
+  ```
+- **Navigateur** : http://localhost:4200
+
+## Arrêter l'application
+
+Pour arrêter le frontend ou le backend, aller dans le terminal correspondant et appuyer sur `Ctrl + C`.
+
+## Dépannage rapide
+
+- **`ng` n'est pas reconnu** : vérifier que Node.js et les dépendances Angular sont installés. Depuis le dossier `frontend`, essayer `npm install`, puis relancer `ng serve`.
+- **`mvn` n'est pas reconnu** : vérifier si `mvnw.cmd` existe dans le dossier `backend` et utiliser `.\mvnw.cmd`.
+- **L'API est rouge ou inaccessible** : vérifier que PostgreSQL fonctionne et que Spring Boot a démarré sans erreur.
+- **Le port 4200 est occupé** : Angular peut proposer un autre port ; ouvrir l'adresse indiquée dans le terminal.
+
+Remarque : ne pas exécuter les deux commandes de démarrage du backend en même temps. Choisir `mvnw.cmd` ou `mvn` selon les fichiers disponibles.

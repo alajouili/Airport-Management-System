@@ -1,0 +1,7 @@
+com\airport\passengers\service\SeatLayoutTest.class
+com\airport\passengers\entity\StatutBagageTest.class
+com\airport\passengers\service\ReservationServiceTest.class
+com\airport\passengers\service\ReclamationServiceTest.class
+com\airport\passengers\service\EmbarquementServiceTest.class
+com\airport\passengers\entity\StatutReclamationAssistanceTest.class
+com\airport\passengers\service\ObjetTrouveServiceTest.class
